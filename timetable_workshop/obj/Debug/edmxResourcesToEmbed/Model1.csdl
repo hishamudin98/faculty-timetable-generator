@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Timetable_proModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Admin_Role" FromRole="Admin" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Course_Subject" Relationship="Self.FK_Course_Subject_Course" FromRole="Course" ToRole="Course_Subject" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Course" FromRole="Course" ToRole="Student" />
+    <NavigationProperty Name="Slots" Relationship="Timetable_proModel.FK_Slot_Course" FromRole="Course" ToRole="Slot" />
+  </EntityType>
+  <EntityType Name="Course_Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="Subject_ID" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Course_Subject_Course" FromRole="Course_Subject" ToRole="Course" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_Course_Subject_Subject" FromRole="Course_Subject" ToRole="Subject" />
+    <NavigationProperty Name="Subject_Lecturer" Relationship="Self.FK_Subject_Lecturer_Course_Subject" FromRole="Course_Subject" ToRole="Subject_Lecturer" />
+  </EntityType>
+  <EntityType Name="Lecturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Lecturer_Role" FromRole="Lecturer" ToRole="Role" />
+    <NavigationProperty Name="Subject_Lecturer" Relationship="Self.FK_Subject_Lecturer_Lecturer" FromRole="Lecturer" ToRole="Subject_Lecturer" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_Role" FromRole="Role" ToRole="Admin" />
+    <NavigationProperty Name="Lecturers" Relationship="Self.FK_Lecturer_Role" FromRole="Role" ToRole="Lecturer" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Role" FromRole="Role" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type_ID" Type="Int32" />
+    <NavigationProperty Name="Type" Relationship="Self.FK_Room_Type" FromRole="Room" ToRole="Type" />
+    <NavigationProperty Name="Slots" Relationship="Timetable_proModel.FK_Slot_Room" FromRole="Room" ToRole="Slot" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="Course_ID" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="Self.FK_Student_Course" FromRole="Student" ToRole="Course" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Student_Role" FromRole="Student" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Course_Subject" Relationship="Self.FK_Course_Subject_Subject" FromRole="Subject" ToRole="Course_Subject" />
+  </EntityType>
+  <EntityType Name="Subject_Lecturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Course_Sub_ID" Type="Int32" />
+    <Property Name="Lect_ID" Type="Int32" />
+    <Property Name="Type_ID" Type="Int32" />
+    <NavigationProperty Name="Course_Subject" Relationship="Self.FK_Subject_Lecturer_Course_Subject" FromRole="Subject_Lecturer" ToRole="Course_Subject" />
+    <NavigationProperty Name="Lecturer" Relationship="Self.FK_Subject_Lecturer_Lecturer" FromRole="Subject_Lecturer" ToRole="Lecturer" />
+    <NavigationProperty Name="Type" Relationship="Self.FK_Subject_Lecturer_Type" FromRole="Subject_Lecturer" ToRole="Type" />
+    <NavigationProperty Name="Slots" Relationship="Timetable_proModel.FK_Slot_Subject_Lecturer" FromRole="Subject_Lecturer" ToRole="Slot" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Slots" Relationship="Timetable_proModel.FK_Slot_Timetable" FromRole="Timetable" ToRole="Slot" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Type" FromRole="Type" ToRole="Room" />
+    <NavigationProperty Name="Subject_Lecturer" Relationship="Self.FK_Subject_Lecturer_Type" FromRole="Type" ToRole="Subject_Lecturer" />
+  </EntityType>
+  <Association Name="FK_Admin_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Subject_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Course_Subject" Type="Self.Course_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course_Subject">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Subject_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Course_Subject" Type="Self.Course_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course_Subject">
+        <PropertyRef Name="Subject_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lecturer_Course_Subject">
+    <End Role="Course_Subject" Type="Self.Course_Subject" Multiplicity="0..1" />
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course_Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject_Lecturer">
+        <PropertyRef Name="Course_Sub_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lecturer_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lecturer">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lecturer_Lecturer">
+    <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject_Lecturer">
+        <PropertyRef Name="Lect_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lecturer_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject_Lecturer">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Timetable_proEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Courses" EntityType="Self.Course" />
+    <EntitySet Name="Course_Subject" EntityType="Self.Course_Subject" />
+    <EntitySet Name="Lecturers" EntityType="Self.Lecturer" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <EntitySet Name="Subject_Lecturer" EntityType="Self.Subject_Lecturer" />
+    <EntitySet Name="Timetables" EntityType="Self.Timetable" />
+    <EntitySet Name="Types" EntityType="Self.Type" />
+    <AssociationSet Name="FK_Admin_Role" Association="Self.FK_Admin_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Admin" EntitySet="Admins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Subject_Course" Association="Self.FK_Course_Subject_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Course_Subject" EntitySet="Course_Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Course" Association="Self.FK_Student_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Subject_Subject" Association="Self.FK_Course_Subject_Subject">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Course_Subject" EntitySet="Course_Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lecturer_Course_Subject" Association="Self.FK_Subject_Lecturer_Course_Subject">
+      <End Role="Course_Subject" EntitySet="Course_Subject" />
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lecturer_Role" Association="Self.FK_Lecturer_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Lecturer" EntitySet="Lecturers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lecturer_Lecturer" Association="Self.FK_Subject_Lecturer_Lecturer">
+      <End Role="Lecturer" EntitySet="Lecturers" />
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Role" Association="Self.FK_Student_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Type" Association="Self.FK_Room_Type">
+      <End Role="Type" EntitySet="Types" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lecturer_Type" Association="Self.FK_Subject_Lecturer_Type">
+      <End Role="Type" EntitySet="Types" />
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+    </AssociationSet>
+    <EntitySet Name="View_lect" EntityType="Timetable_proModel.View_lect" />
+    <EntitySet Name="View_Room" EntityType="Timetable_proModel.View_Room" />
+    <EntitySet Name="View_sub2" EntityType="Timetable_proModel.View_sub2" />
+    <EntitySet Name="View_sub3" EntityType="Timetable_proModel.View_sub3" />
+    <EntitySet Name="viewSubs" EntityType="Timetable_proModel.viewSub" />
+    <EntitySet Name="View_1DIT" EntityType="Timetable_proModel.View_1DIT" />
+    <EntitySet Name="Slots" EntityType="Timetable_proModel.Slot" />
+    <AssociationSet Name="FK_Slot_Course" Association="Timetable_proModel.FK_Slot_Course">
+      <End Role="Course" EntitySet="Courses" />
+      <End Role="Slot" EntitySet="Slots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Room" Association="Timetable_proModel.FK_Slot_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Slot" EntitySet="Slots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Subject_Lecturer" Association="Timetable_proModel.FK_Slot_Subject_Lecturer">
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+      <End Role="Slot" EntitySet="Slots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Timetable" Association="Timetable_proModel.FK_Slot_Timetable">
+      <End Role="Timetable" EntitySet="Timetables" />
+      <End Role="Slot" EntitySet="Slots" />
+    </AssociationSet>
+    <EntitySet Name="View_KiraSub" EntityType="Timetable_proModel.View_KiraSub" />
+  </EntityContainer>
+  <EntityType Name="View_lect">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="LectID" />
+      <PropertyRef Name="DayID" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameSub" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="LectID" Type="Int32" Nullable="false" />
+    <Property Name="DayID" Type="Int32" Nullable="false" />
+    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="View_Room">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="RoomID" />
+      <PropertyRef Name="DayID" />
+    </Key>
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="RoomID" Type="Int32" Nullable="false" />
+    <Property Name="DayID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_sub2">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TypeID" />
+      <PropertyRef Name="sublectID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="LecturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sublectID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_sub3">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TypeID" />
+      <PropertyRef Name="sublectID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="LecturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sublectID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="viewSub">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="sublectID" />
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="sublectID" Type="Int32" Nullable="false" />
+    <Property Name="LecturerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="View_1DIT">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="SubjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CodeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Slot">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Room_ID" Type="Int32" />
+    <Property Name="Lect_Sub_ID" Type="Int32" />
+    <Property Name="Course_ID" Type="Int32" />
+    <Property Name="Timetable_ID" Type="Int32" />
+    <Property Name="Number" Type="Int32" />
+    <NavigationProperty Name="Course" Relationship="Timetable_proModel.FK_Slot_Course" FromRole="Slot" ToRole="Course" />
+    <NavigationProperty Name="Room" Relationship="Timetable_proModel.FK_Slot_Room" FromRole="Slot" ToRole="Room" />
+    <NavigationProperty Name="Subject_Lecturer" Relationship="Timetable_proModel.FK_Slot_Subject_Lecturer" FromRole="Slot" ToRole="Subject_Lecturer" />
+    <NavigationProperty Name="Timetable" Relationship="Timetable_proModel.FK_Slot_Timetable" FromRole="Slot" ToRole="Timetable" />
+  </EntityType>
+  <Association Name="FK_Slot_Course">
+    <End Type="Timetable_proModel.Course" Role="Course" Multiplicity="0..1" />
+    <End Type="Timetable_proModel.Slot" Role="Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Room">
+    <End Type="Timetable_proModel.Room" Role="Room" Multiplicity="0..1" />
+    <End Type="Timetable_proModel.Slot" Role="Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Room_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Subject_Lecturer">
+    <End Type="Timetable_proModel.Subject_Lecturer" Role="Subject_Lecturer" Multiplicity="0..1" />
+    <End Type="Timetable_proModel.Slot" Role="Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject_Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Lect_Sub_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Timetable">
+    <End Type="Timetable_proModel.Timetable" Role="Timetable" Multiplicity="0..1" />
+    <End Type="Timetable_proModel.Slot" Role="Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timetable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Timetable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="View_KiraSub">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Expr2" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NameLecturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Expr2" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="Int32" Nullable="false" />
+    <Property Name="Expr3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

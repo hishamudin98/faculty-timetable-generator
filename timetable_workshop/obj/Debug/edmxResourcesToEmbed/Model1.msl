@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Timetable_proModelStoreContainer" CdmEntityContainer="Timetable_proEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="Timetable_proModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="image" ColumnName="image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="Timetable_proModel.Course">
+        <MappingFragment StoreEntitySet="Course">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Course_Subject">
+      <EntityTypeMapping TypeName="Timetable_proModel.Course_Subject">
+        <MappingFragment StoreEntitySet="Course_Subject">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Subject_ID" ColumnName="Subject_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lecturers">
+      <EntityTypeMapping TypeName="Timetable_proModel.Lecturer">
+        <MappingFragment StoreEntitySet="Lecturer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="NoPhone" ColumnName="NoPhone" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="Timetable_proModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="Timetable_proModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="Timetable_proModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="Timetable_proModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject_Lecturer">
+      <EntityTypeMapping TypeName="Timetable_proModel.Subject_Lecturer">
+        <MappingFragment StoreEntitySet="Subject_Lecturer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Course_Sub_ID" ColumnName="Course_Sub_ID" />
+          <ScalarProperty Name="Lect_ID" ColumnName="Lect_ID" />
+          <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Timetables">
+      <EntityTypeMapping TypeName="Timetable_proModel.Timetable">
+        <MappingFragment StoreEntitySet="Timetable">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Types">
+      <EntityTypeMapping TypeName="Timetable_proModel.Type">
+        <MappingFragment StoreEntitySet="Type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_lect">
+      <EntityTypeMapping TypeName="Timetable_proModel.View_lect">
+        <MappingFragment StoreEntitySet="View_lect">
+          <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="DayID" ColumnName="DayID" />
+          <ScalarProperty Name="LectID" ColumnName="LectID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="NameSub" ColumnName="NameSub" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Room">
+      <EntityTypeMapping TypeName="Timetable_proModel.View_Room">
+        <MappingFragment StoreEntitySet="View_Room">
+          <ScalarProperty Name="DayID" ColumnName="DayID" />
+          <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_sub2">
+      <EntityTypeMapping TypeName="Timetable_proModel.View_sub2">
+        <MappingFragment StoreEntitySet="View_sub2">
+          <ScalarProperty Name="sublectID" ColumnName="sublectID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LecturerName" ColumnName="LecturerName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_sub3">
+      <EntityTypeMapping TypeName="Timetable_proModel.View_sub3">
+        <MappingFragment StoreEntitySet="View_sub3">
+          <ScalarProperty Name="sublectID" ColumnName="sublectID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="LecturerName" ColumnName="LecturerName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="viewSubs">
+      <EntityTypeMapping TypeName="Timetable_proModel.viewSub">
+        <MappingFragment StoreEntitySet="viewSub">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="LecturerName" ColumnName="LecturerName" />
+          <ScalarProperty Name="sublectID" ColumnName="sublectID" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_1DIT">
+      <EntityTypeMapping TypeName="Timetable_proModel.View_1DIT">
+        <MappingFragment StoreEntitySet="View_1DIT">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CodeName" ColumnName="CodeName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slots">
+      <EntityTypeMapping TypeName="Timetable_proModel.Slot">
+        <MappingFragment StoreEntitySet="Slot">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Timetable_ID" ColumnName="Timetable_ID" />
+          <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+          <ScalarProperty Name="Lect_Sub_ID" ColumnName="Lect_Sub_ID" />
+          <ScalarProperty Name="Room_ID" ColumnName="Room_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_KiraSub">
+      <EntityTypeMapping TypeName="Timetable_proModel.View_KiraSub">
+        <MappingFragment StoreEntitySet="View_KiraSub">
+          <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="NameLecturer" ColumnName="NameLecturer" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

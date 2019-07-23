@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="85bb41e186114a8a805f6237998bdb2c" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="Timetable_proModel.Admin" Width="1.5" PointX="6" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Course" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Course_Subject" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Lecturer" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Role" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Room" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Student" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Subject" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Subject_Lecturer" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Timetable" Width="1.5" PointX="8.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Timetable_proModel.Type" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="Timetable_proModel.FK_Admin_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Course_Subject_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Student_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Course_Subject_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Subject_Lecturer_Course_Subject" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Lecturer_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Subject_Lecturer_Lecturer" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Student_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Room_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="Timetable_proModel.FK_Subject_Lecturer_Type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Timetable_proModel.View_lect" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Timetable_proModel.View_Room" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Timetable_proModel.View_sub2" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Timetable_proModel.View_sub3" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Timetable_proModel.viewSub" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Timetable_proModel.View_1DIT" Width="1.5" PointX="10.375" PointY="12.75" />
+        <EntityTypeShape EntityType="Timetable_proModel.Slot" Width="1.5" PointX="10.5" PointY="5" />
+        <AssociationConnector Association="Timetable_proModel.FK_Slot_Course" />
+        <AssociationConnector Association="Timetable_proModel.FK_Slot_Room" />
+        <AssociationConnector Association="Timetable_proModel.FK_Slot_Subject_Lecturer" />
+        <AssociationConnector Association="Timetable_proModel.FK_Slot_Timetable" />
+        <EntityTypeShape EntityType="Timetable_proModel.View_KiraSub" Width="1.5" PointX="12.375" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Timetable_proModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="image" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Course_Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_ID" Type="int" />
+    <Property Name="Subject_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Lecturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="NoPhone" Type="varchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" />
+    <Property Name="RoleID" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Type_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Slot">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Room_ID" Type="int" />
+    <Property Name="Lect_Sub_ID" Type="int" />
+    <Property Name="Course_ID" Type="int" />
+    <Property Name="Timetable_ID" Type="int" />
+    <Property Name="Number" Type="int" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" MaxLength="50" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="Course_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodeName" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Subject_Lecturer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Course_Sub_ID" Type="int" />
+    <Property Name="Lect_ID" Type="int" />
+    <Property Name="Type_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Timetable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Day" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.View_1DIT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_1DIT">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Expr1" />
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="SubjectName" Type="varchar" MaxLength="100" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="CodeName" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="int" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="TypeName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.View_KiraSub' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_KiraSub">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Expr2" />
+      <PropertyRef Name="Expr1" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="NameLecturer" Type="varchar(max)" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="Expr2" Type="int" Nullable="false" />
+    <Property Name="Expr1" Type="int" Nullable="false" />
+    <Property Name="Expr3" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.View_lect' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_lect">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="LectID" />
+      <PropertyRef Name="DayID" />
+    </Key>
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Day" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" />
+    <Property Name="LectID" Type="int" Nullable="false" />
+    <Property Name="DayID" Type="int" Nullable="false" />
+    <Property Name="NameSub" Type="varchar" MaxLength="100" />
+    <Property Name="CourseName" Type="varchar" MaxLength="50" />
+    <Property Name="RoomName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.View_Room' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_Room">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="RoomID" />
+      <PropertyRef Name="DayID" />
+    </Key>
+    <Property Name="Day" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" />
+    <Property Name="RoomID" Type="int" Nullable="false" />
+    <Property Name="DayID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.View_sub2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_sub2">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TypeID" />
+      <PropertyRef Name="sublectID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="LecturerName" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Year" Type="int" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="sublectID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.View_sub3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="View_sub3">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TypeID" />
+      <PropertyRef Name="sublectID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Year" Type="int" />
+    <Property Name="LecturerName" Type="varchar" MaxLength="50" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="sublectID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Timetable_pro.dbo.viewSub' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="viewSub">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="sublectID" />
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="Year" Type="int" />
+    <Property Name="sublectID" Type="int" Nullable="false" />
+    <Property Name="LecturerName" Type="varchar" MaxLength="50" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Admin_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Subject_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Course_Subject" Type="Self.Course_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course_Subject">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Subject_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Course_Subject" Type="Self.Course_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Course_Subject">
+        <PropertyRef Name="Subject_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lecturer_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Lecturer">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Room_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Subject_Lecturer">
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="0..1" />
+    <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject_Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Lect_Sub_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Slot_Timetable">
+    <End Role="Timetable" Type="Self.Timetable" Multiplicity="0..1" />
+    <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Timetable">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Slot">
+        <PropertyRef Name="Timetable_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Course_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lecturer_Course_Subject">
+    <End Role="Course_Subject" Type="Self.Course_Subject" Multiplicity="0..1" />
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course_Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject_Lecturer">
+        <PropertyRef Name="Course_Sub_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lecturer_Lecturer">
+    <End Role="Lecturer" Type="Self.Lecturer" Multiplicity="0..1" />
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lecturer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject_Lecturer">
+        <PropertyRef Name="Lect_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Lecturer_Type">
+    <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+    <End Role="Subject_Lecturer" Type="Self.Subject_Lecturer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject_Lecturer">
+        <PropertyRef Name="Type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Timetable_proModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course_Subject" EntityType="Self.Course_Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lecturer" EntityType="Self.Lecturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slot" EntityType="Self.Slot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject_Lecturer" EntityType="Self.Subject_Lecturer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Timetable" EntityType="Self.Timetable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="View_1DIT" EntityType="Self.View_1DIT" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_1DIT].[SubjectName] AS [SubjectName], 
+    [View_1DIT].[Name] AS [Name], 
+    [View_1DIT].[CodeName] AS [CodeName], 
+    [View_1DIT].[ID] AS [ID], 
+    [View_1DIT].[Expr1] AS [Expr1], 
+    [View_1DIT].[TypeID] AS [TypeID], 
+    [View_1DIT].[TypeName] AS [TypeName]
+    FROM [dbo].[View_1DIT] AS [View_1DIT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_KiraSub" EntityType="Self.View_KiraSub" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_KiraSub].[ID] AS [ID], 
+    [View_KiraSub].[Name] AS [Name], 
+    [View_KiraSub].[NameLecturer] AS [NameLecturer], 
+    [View_KiraSub].[type] AS [type], 
+    [View_KiraSub].[Expr2] AS [Expr2], 
+    [View_KiraSub].[Expr1] AS [Expr1], 
+    [View_KiraSub].[Expr3] AS [Expr3]
+    FROM [dbo].[View_KiraSub] AS [View_KiraSub]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_lect" EntityType="Self.View_lect" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_lect].[Name] AS [Name], 
+    [View_lect].[Day] AS [Day], 
+    [View_lect].[ID] AS [ID], 
+    [View_lect].[Number] AS [Number], 
+    [View_lect].[LectID] AS [LectID], 
+    [View_lect].[DayID] AS [DayID], 
+    [View_lect].[NameSub] AS [NameSub], 
+    [View_lect].[CourseName] AS [CourseName], 
+    [View_lect].[RoomName] AS [RoomName]
+    FROM [dbo].[View_lect] AS [View_lect]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_Room" EntityType="Self.View_Room" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_Room].[Day] AS [Day], 
+    [View_Room].[Name] AS [Name], 
+    [View_Room].[ID] AS [ID], 
+    [View_Room].[Number] AS [Number], 
+    [View_Room].[RoomID] AS [RoomID], 
+    [View_Room].[DayID] AS [DayID]
+    FROM [dbo].[View_Room] AS [View_Room]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_sub2" EntityType="Self.View_sub2" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_sub2].[ID] AS [ID], 
+    [View_sub2].[LecturerName] AS [LecturerName], 
+    [View_sub2].[Name] AS [Name], 
+    [View_sub2].[Year] AS [Year], 
+    [View_sub2].[TypeID] AS [TypeID], 
+    [View_sub2].[Type] AS [Type], 
+    [View_sub2].[sublectID] AS [sublectID]
+    FROM [dbo].[View_sub2] AS [View_sub2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="View_sub3" EntityType="Self.View_sub3" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [View_sub3].[ID] AS [ID], 
+    [View_sub3].[Name] AS [Name], 
+    [View_sub3].[Year] AS [Year], 
+    [View_sub3].[LecturerName] AS [LecturerName], 
+    [View_sub3].[TypeID] AS [TypeID], 
+    [View_sub3].[Type] AS [Type], 
+    [View_sub3].[sublectID] AS [sublectID]
+    FROM [dbo].[View_sub3] AS [View_sub3]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="viewSub" EntityType="Self.viewSub" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [viewSub].[ID] AS [ID], 
+    [viewSub].[Name] AS [Name], 
+    [viewSub].[Type] AS [Type], 
+    [viewSub].[Year] AS [Year], 
+    [viewSub].[sublectID] AS [sublectID], 
+    [viewSub].[LecturerName] AS [LecturerName], 
+    [viewSub].[TypeID] AS [TypeID]
+    FROM [dbo].[viewSub] AS [viewSub]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Admin_Role" Association="Self.FK_Admin_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Subject_Course" Association="Self.FK_Course_Subject_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Course_Subject" EntitySet="Course_Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Subject_Subject" Association="Self.FK_Course_Subject_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Course_Subject" EntitySet="Course_Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lecturer_Role" Association="Self.FK_Lecturer_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Lecturer" EntitySet="Lecturer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Type" Association="Self.FK_Room_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Course" Association="Self.FK_Slot_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Slot" EntitySet="Slot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Room" Association="Self.FK_Slot_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Slot" EntitySet="Slot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Subject_Lecturer" Association="Self.FK_Slot_Subject_Lecturer">
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+      <End Role="Slot" EntitySet="Slot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Slot_Timetable" Association="Self.FK_Slot_Timetable">
+      <End Role="Timetable" EntitySet="Timetable" />
+      <End Role="Slot" EntitySet="Slot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Course" Association="Self.FK_Student_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Role" Association="Self.FK_Student_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lecturer_Course_Subject" Association="Self.FK_Subject_Lecturer_Course_Subject">
+      <End Role="Course_Subject" EntitySet="Course_Subject" />
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lecturer_Lecturer" Association="Self.FK_Subject_Lecturer_Lecturer">
+      <End Role="Lecturer" EntitySet="Lecturer" />
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Lecturer_Type" Association="Self.FK_Subject_Lecturer_Type">
+      <End Role="Type" EntitySet="Type" />
+      <End Role="Subject_Lecturer" EntitySet="Subject_Lecturer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
